@@ -1,37 +1,47 @@
-# Vue-WebApp
+# vue-webapp
 
-#### 介绍
-开箱即用的WebApp脚手架
+## 配置
 
-#### 软件架构
-软件架构说明
+### 移动端适配
 
+-   安装依赖
 
-#### 安装教程
+```shell
+npm install lib-flexible --save
 
-1. xxxx
-2. xxxx
-3. xxxx
+npm install postcss-pxtorem --dev
+```
 
-#### 使用说明
+-   添加 meta
 
-1. xxxx
-2. xxxx
-3. xxxx
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```
 
-#### 参与贡献
+-   引入文件
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+```javascript
+// main.js
+import "lib-flexible";
+```
 
+-   配置 postcss-pxtorem
 
-#### 码云特技
+```javascript
+// postcss.config.js
+module.exports = {
+	plugins: {
+		autoprefixer: {},
+		"postcss-pxtorem": {
+			rootValue: 75, // 设计稿宽度的1/10,（JSON文件中不加注释，此行注释及下行注释均删除）
+			propList: ["*"], // 需要做转化处理的属性，如`hight`、`width`、`margin`等，`*`表示全部
+		},
+	},
+};
+```
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 图标字体
+
+## 图片懒加载
+
+## vue.config.js 配置
