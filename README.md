@@ -68,6 +68,26 @@ Vue.component("v-icon", Icon);
 
 [自己制作 svg 图标字体组件](https://juejin.im/post/5c3c544c6fb9a049d37f5903)
 
+```javascript
+// vue.config.js
+// set svg-sprite-loader
+config.module
+	.rule("svg")
+	.exclude.add(resolve("src/icons"))
+	.end();
+config.module
+	.rule("icons")
+	.test(/\.svg$/)
+	.include.add(resolve("src/icons"))
+	.end()
+	.use("svg-sprite-loader")
+	.loader("svg-sprite-loader")
+	.options({
+		symbolId: "icon-[name]",
+	})
+	.end();
+```
+
 ### 图片懒加载
 
 -   安装
@@ -110,6 +130,18 @@ npm install animate.css --save
 ```javascript
 // main.js
 import "animate.css";
+```
+
+### axios 封装统一管理 api
+
+```
+npm install axios --save
+```
+
+### mock 数据
+
+```
+npm install mockjs --save-dev
 ```
 
 ## vue.config.js 配置
