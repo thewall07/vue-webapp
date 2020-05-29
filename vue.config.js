@@ -18,6 +18,7 @@ module.exports = {
             // .set('@store', resolve('src/store'))
             // .set('@layouts', resolve('src/layouts'))
             .set('@static', resolve('src/static'));
+            config.productionGzip = true;
     },
     // 配置proxy代理解决跨域问题
     devServer: {
