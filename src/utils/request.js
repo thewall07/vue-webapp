@@ -1,7 +1,5 @@
 import axios from 'axios';
-import {
-    Message
-} from 'element-ui';
+import { Toast } from 'vant';
 import store from '@/store';
 import qs from 'qs';
 
@@ -108,10 +106,10 @@ service.interceptors.response.use(
                     });
                     break;
 
-                    // 403 token过期
-                    // 登录过期对用户进行提示
-                    // 清除本地token和清空vuex中token对象
-                    // 跳转登录页面                
+                // 403 token过期
+                // 登录过期对用户进行提示
+                // 清除本地token和清空vuex中token对象
+                // 跳转登录页面                
                 case 403:
                     Toast({
                         message: '登录过期，请重新登录',
@@ -132,7 +130,7 @@ service.interceptors.response.use(
                     }, 1000);
                     break;
 
-                    // 404请求不存在
+                // 404请求不存在
                 case 404:
                     Toast({
                         message: '网络请求不存在',
@@ -140,7 +138,7 @@ service.interceptors.response.use(
                         forbidClick: true
                     });
                     break;
-                    // 其他错误，直接抛出错误提示
+                // 其他错误，直接抛出错误提示
                 default:
                     Toast({
                         message: error.response.data.message,

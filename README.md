@@ -39,7 +39,26 @@ module.exports = {
 	},
 };
 ```
+### 引入 vant
+它会在编译过程中将 import 的写法自动转换为按需引入的方式
 
+```shell
+npm i babel-plugin-import -D
+```
+```javascript
+// 在.babelrc 中添加配置
+// 注意：webpack 1 无需设置 libraryDirectory
+// 对于使用 babel7 的用户，可以在 babel.config.js 中配置
+{
+  plugins: [
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
+  ]
+}
+```
 ### 图标字体
 
 -   安装
