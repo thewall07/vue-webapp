@@ -1,27 +1,30 @@
 <!-- 主页 -->
 <template>
-  <div class></div>
+  <div>哈哈哈</div>
 </template>
 
 <script>
+import homeApi from "@/api/home"
 export default {
   components: {},
   data() {
-    return {
-      
-    };
+    return {};
   },
   computed: {},
 
-  watch: {
-    
-  },
+  watch: {},
 
   methods: {
-   
+    getHome() {
+      homeApi.getHome().then(res => {
+        console.log(res);
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.getHome();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前

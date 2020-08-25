@@ -1,5 +1,4 @@
-export default {
-    getters: {
-        token: state => state.user.token
-    }
+const getters = {
+    token: state => state.user.token
 }
+export default getters
