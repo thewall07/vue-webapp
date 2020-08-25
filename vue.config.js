@@ -1,5 +1,6 @@
 const path = require('path');
-
+const autoprefixer = require('autoprefixer');
+const pxtorem = require('postcss-pxtorem');
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
@@ -18,7 +19,7 @@ module.exports = {
             // .set('@store', resolve('src/store'))
             // .set('@layouts', resolve('src/layouts'))
             .set('@static', resolve('src/static'));
-            config.productionGzip = true;
+        config.productionGzip = true;
     },
     // 配置proxy代理解决跨域问题
     devServer: {
@@ -40,6 +41,19 @@ module.exports = {
                 pathRewrite: {
                     "^/api": "/"
                 }
+            }
+        }
+    },
+    css: {
+        loaderOptions: {
+            postcss: {
+                plugins: [
+                    autoprefixer(),
+                    pxtorem({
+                        rootValue: 75,
+                        propList: ['*']
+                    })
+                ]
             }
         }
     }
