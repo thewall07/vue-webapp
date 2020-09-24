@@ -1,6 +1,9 @@
 <!-- 主页 -->
 <template>
-  <div>哈哈哈</div>
+  <div>
+    <van-button type="primary">主要按钮</van-button>
+    <v-icon name="beer" />
+  </div>
 </template>
 
 <script>

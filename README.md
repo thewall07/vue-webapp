@@ -47,7 +47,7 @@ module.exports = {
     }
 };
 ```
-### 引入 vant
+### 按需引入 vant
 它会在编译过程中将 import 的写法自动转换为按需引入的方式
 
 ```shell
@@ -72,7 +72,7 @@ npm i babel-plugin-import -D
 -   安装
 
 ```
-npm install vue-awesome
+npm install vue-awesome --save
 ```
 
 -   引入
@@ -115,12 +115,12 @@ config.module
 	.end();
 ```
 
-### 图片懒加载
+### 图片懒加载(Vant)
 
 -   安装
 
 ```
-npm install vue-lazyload --save-dev
+npm install vue-lazyload --save
 ```
 
 -   引入并使用
@@ -163,14 +163,24 @@ import "animate.css";
 
 ```
 npm install axios --save
+
 ```
+- 使用
+> 参考api目录
 
 ### mock 数据
 
 ```
 npm install mockjs --save-dev
 ```
-
+### better-scroll滚动
+```
+npm install @better-scroll/core --save
+```
+```javascript
+// 使用的组件中
+import BScroll from '@better-scroll/core'
+```
 ## vue.config.js 配置
 
 ### 设置别名
@@ -198,7 +208,16 @@ module.exports = {
     }
 }
 ```
+### 开启source-map
 
+```javascript
+module.exports = {
+	configureWebpack: {
+        devtool: process.env.NODE_ENV === "production" ? 'false' : 'source-map'
+    }
+}
+
+```
 ### 配置 proxy 代理解决跨域问题
 
 ```javascript
@@ -220,7 +239,7 @@ module.exports = {
 				changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
 				// ws: true, // 是否启用websockets
 				pathRewrite: {
-					"^/api": "/",
+					"^/api": "/", // 会把target拼接到api前边,这个属性相当于把api有什么替换
 				},
 			},
 		},

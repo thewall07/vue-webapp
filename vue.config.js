@@ -21,6 +21,10 @@ module.exports = {
             .set('@static', resolve('src/static'));
         config.productionGzip = true;
     },
+    // 开发环境开启 source-map
+    configureWebpack: {
+        devtool: process.env.NODE_ENV === "production" ? 'false' : 'source-map'
+    },
     // 配置proxy代理解决跨域问题
     devServer: {
         // overlay: { // 让浏览器 overlay 同时显示警告和错误
