@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Toast } from 'vant';
 import store from '@/store';
 import qs from 'qs';
-
+console.log(process.env)
 // 可以提取功能函数
 
 /** 
@@ -67,7 +67,7 @@ import qs from 'qs';
 // }
 // 创建 axios 实例
 const service = axios.create({
-    baseUrl: process.env.VUE_APP_BASE_API, // api的base_url
+    baseUrl: process.env.VUE_APP_BASE_API, // 服务地址
     timeout: 5000
 })
 // 请求拦截器
