@@ -67,7 +67,7 @@ import qs from 'qs';
 // }
 // 创建 axios 实例
 const service = axios.create({
-    baseUrl: process.env.VUE_APP_API, // api的base_url
+    baseUrl: process.env.VUE_APP_BASE_API, // api的base_url
     timeout: 5000
 })
 // 请求拦截器
