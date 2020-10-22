@@ -57,6 +57,14 @@ import qs from 'qs';
 // 设置请求头
 // axios.default.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
+// process.env是Nodejs提供的一个API，它返回一个包含用户环境信息的对象。
+// 通过NODE_ENV 判断当前环境是生产环境(production)还是开发环境(development) 自动切换不同域名
+// 暂时开发环境和生产环境  所以域名暂时一样 
+// if(process.env.NODE_ENV == "development"){ 
+//     host = "http://shop.bufantec.com/bufan";
+// }else{
+//     host = "http://shop.bufantec.com/bufan";
+// }
 // 创建 axios 实例
 const service = axios.create({
     baseUrl: process.env.VUE_APP_API, // api的base_url
