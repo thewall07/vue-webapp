@@ -1,15 +1,17 @@
 # vue-webapp
 
+基于 vue-cli3 + vant ui + sass + rem 适配方案 + axios 封装，构建移动 `webapp`模板。
+
 ## 配置
 
-### 移动端适配
+### ✅ 移动端rem适配
 
 -   安装依赖
 
 ```shell
 npm install lib-flexible --save
 
-npm install postcss-pxtorem --save
+npm install postcss-pxtorem --save-dev
 ```
 
 -   添加 meta
@@ -26,7 +28,7 @@ import "lib-flexible";
 ```
 
 -   配置 postcss-pxtorem
-
+在 `vue.config.js`中写入以下配置
 ```javascript
 // vue.config.js
 const autoprefixer = require('autoprefixer');
@@ -47,12 +49,13 @@ module.exports = {
     }
 };
 ```
-### 按需引入 vant
+### ✅按需引入 vant
 它会在编译过程中将 import 的写法自动转换为按需引入的方式
 
 ```shell
 npm i babel-plugin-import -D
 ```
+在`babel.config.js`写入以下配置
 ```javascript
 // 在.babelrc 中添加配置
 // 注意：webpack 1 无需设置 libraryDirectory
@@ -67,7 +70,86 @@ npm i babel-plugin-import -D
   ]
 }
 ```
-### 图标字体
+### ✅ Vuex 状态管理
+
+目录结构
+
+```bash
+├── store
+│   ├── modules
+│   │   └── user.js
+│   ├── index.js
+│   ├── getters.js
+```
+-  引入
+
+```javascript
+// main.js
+import Vue from 'vue'
+import App from './App.vue'
+import store from './store'
+new Vue({
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
+})
+```
+
+- 使用
+
+```html
+<script>
+  import { mapGetters } from 'vuex'
+  export default {
+    computed: {
+      ...mapGetters(['userName'])
+    },
+
+    methods: {
+      // Action 通过 store.dispatch 方法触发
+      // 模块名/方法名
+      doDispatch() {
+        this.$store.dispatch('user/login', '真乖，赶紧登录~')
+      }
+    }
+  }
+</script>
+```
+### ✅ Vue-Router
+
+本案例采用 `hash` 模式，开发者根据需求修改 `mode` `base`
+
+**注意**：如果你使用了 `history` 模式，`vue.config.js` 中的 `publicPath` 要做对应的**修改**
+
+前往:[vue.config.js 基础配置](#base)
+
+```javascript
+import Vue from "vue";
+import Router from "vue-router";
+// import Home from "./views/Home.vue";
+
+Vue.use(Router);
+
+export default new Router({
+    mode: 'hash',
+    routes: [{
+        path: "/",
+        name: "home",
+        component: () => import( /* webpackChunkName: "home" */ "@/views/Home")
+    },
+    {
+        path: "/login",
+        name: "login",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import( /* webpackChunkName: "login" */ "@/views/Login")
+    }
+    ]
+});
+```
+### ✅图标字体
 
 -   安装
 
@@ -91,7 +173,7 @@ Vue.component("v-icon", Icon);
 <v-icon name="beer" />
 ```
 
-### 优雅使用 svg
+### ✅优雅使用 svg
 
 [自己制作 svg 图标字体组件](https://juejin.im/post/5c3c544c6fb9a049d37f5903)
 
@@ -115,7 +197,7 @@ config.module
 	.end();
 ```
 
-### 图片懒加载(Vant)
+### ✅图片懒加载(Vant)
 
 -   安装
 
@@ -144,7 +226,7 @@ Vue.use(VueLazyload);
 <img v-lazy="/static/img/1.png" />
 ```
 
-### animate.css 动画库
+### ✅animate.css 动画库
 
 -   安装
 
@@ -159,21 +241,24 @@ npm install animate.css --save
 import "animate.css";
 ```
 
-### axios 封装统一管理 api
+### ✅axios 封装统一管理 api
 
 ```
 npm install axios --save
 
 ```
+-     封装
+> 参考 `utils`下的`request.js`
+
 - 使用
 > 参考api目录
 
-### mock 数据
+### ✅mock 数据
 
 ```
 npm install mockjs --save-dev
 ```
-### better-scroll滚动
+### ✅better-scroll滚动
 ```
 npm install @better-scroll/core --save
 ```
@@ -181,9 +266,10 @@ npm install @better-scroll/core --save
 // 使用的组件中
 import BScroll from '@better-scroll/core'
 ```
+
 ## vue.config.js 配置
 
-### 设置别名
+### ✅设置 alias 别名
 
 ```javascript
 const path = require('path);
@@ -208,7 +294,7 @@ module.exports = {
     }
 }
 ```
-### 开启source-map
+### ✅开启source-map
 
 ```javascript
 module.exports = {
@@ -218,7 +304,7 @@ module.exports = {
 }
 
 ```
-### 配置 proxy 代理解决跨域问题
+### ✅配置 proxy 代理解决跨域问题
 
 ```javascript
 module.exports = {
@@ -263,7 +349,7 @@ module.exports = {
 </script>
 ```
 
-### 修复热更新(HMR)失效
+### ✅修复热更新(HMR)失效
 
 ```javascript
 module.exports = {
@@ -274,7 +360,7 @@ module.exports = {
 };
 ```
 
-### 添加打包分析
+### ✅添加打包分析
 
 ```javascript
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
@@ -312,7 +398,7 @@ package.json 的 scripts 中添加
 npm run analyz
 ```
 
-### 压缩图片
+### ✅压缩图片
 
 ```
 npm i -D image-webpack-loader
@@ -336,7 +422,7 @@ module.exports = {
 };
 ```
 
-### 开启 gZip 压缩
+### ✅开启 gZip 压缩
 ```
 npm install --save-dev compression-webpack-plugin
 ```

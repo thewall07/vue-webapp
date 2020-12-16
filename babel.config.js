@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ["@vue/app"],
+  presets: ['@vue/app'],
   plugins: [
     ['import', {
       libraryName: 'vant',
@@ -7,4 +7,4 @@ module.exports = {
       style: true
     }, 'vant']
   ]
-};
+}
