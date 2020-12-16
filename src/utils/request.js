@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import axios from 'axios'
 import {Toast} from 'vant'
 import store from '@/store'
 import router from '@/router'
 import qs from 'qs'
 
+=======
+import axios from 'axios';
+import { Toast } from 'vant';
+import store from '@/store';
+import qs from 'qs';
+console.log(process.env)
+>>>>>>> 22efd214ec24c67b3a0e127c636d142e27bee6ea
 // 可以提取功能函数
 
 /**
@@ -58,10 +66,23 @@ import qs from 'qs'
 // 设置请求头
 // axios.default.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
+// process.env是Nodejs提供的一个API，它返回一个包含用户环境信息的对象。
+// 通过NODE_ENV 判断当前环境是生产环境(production)还是开发环境(development) 自动切换不同域名
+// 暂时开发环境和生产环境  所以域名暂时一样 
+// if(process.env.NODE_ENV == "development"){ 
+//     host = "http://shop.bufantec.com/bufan";
+// }else{
+//     host = "http://shop.bufantec.com/bufan";
+// }
 // 创建 axios 实例
 const service = axios.create({
+<<<<<<< HEAD
   baseUrl: process.env.VUE_APP_API, // api的base_url
   timeout: 5000
+=======
+    baseUrl: process.env.VUE_APP_BASE_API, // 服务地址
+    timeout: 5000
+>>>>>>> 22efd214ec24c67b3a0e127c636d142e27bee6ea
 })
 // 请求拦截器
 service.interceptors.request.use(
